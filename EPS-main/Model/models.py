@@ -60,7 +60,7 @@ class Quiz_2(models.Model):
 
 
 class Question(models.Model):
-    text = models.TextField(max_length=200)
+    text = models.TextField()
     quiz = models.ForeignKey(Quiz_2 , on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -71,7 +71,7 @@ class Question(models.Model):
         return self.answer_set.all()
 
 class Answer(models.Model):
-    text = models.CharField(max_length=200)
+    text = models.TextField()
     correct = models.BooleanField(default=False)
     question = models.ForeignKey(Question , on_delete=models.CASCADE )
     created = models.DateTimeField(auto_now_add=True)
