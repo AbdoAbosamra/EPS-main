@@ -26,8 +26,12 @@ class Student (models.Model):
     InformationTheory = models.PositiveIntegerField(null=True)
     SystemAnalysis_And_Design = models.PositiveIntegerField(null=True)
     Department_DS = models.CharField(max_length=2,null =True , blank=True)
+    DS_acc = models.CharField(max_length=2,null =True , blank=True)
     Department_SVM = models.CharField(max_length=2,null =True , blank=True)
+    SVM_acc = models.CharField(max_length=2, null=True, blank=True)
     Department_KNN = models.CharField(max_length=2, null=True, blank=True)
+    KNN_acc = models.CharField(max_length=2, null=True, blank=True)
+
 
     def __str__(self):
         return self.user.first_name + ' ' + self.user.last_name

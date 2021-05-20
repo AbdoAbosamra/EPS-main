@@ -74,28 +74,26 @@
 
 
 				var productsRevenuePieChart_1 = new CanvasJS.Chart("products-revenue-pie-chart-1", {
-					animationEnabled: true,
-					theme: "theme2",
+					exportEnabled: true,
+				    animationEnabled: true,
+					theme: "theme1",
 					legend: {
-						fontSize: 14
+						fontSize: 30
 					},
 					toolTip: {
 						borderThickness: 0,
-						content: "<span style='\"'color: {color};'\"'>{name}</span>: ${y} (#percent%)",
+						content: "<span style='\"'color: {green};'\"'>{name}</span>: ${y} (#percent%)",
 						cornerRadius: 5
 					},
 					data: [
 						{
-							indexLabelFontColor: "#676464",
-							indexLabelFontSize: 10,
-							legendMarkerType: "blue",
-							legendText: "{indexLabel}",
-							showInLegend: true,
-							startAngle:  90,
 							type: "pie",
+		                    showInLegend: true,
+		                    toolTipContent: "{name}: <strong>{y}%</strong>",
+		                    indexLabel: "{name} - {y}%",
 							dataPoints: [
-								{  y: 30 , name:"A", indexLabel: "50%", legendText: "A", exploded: true },
-								{  y: 70 , name:"B", indexLabel: "50%", legendText: "B" }
+								{  y: {{ student.SVM_acc }} , name:"SVM", indexLabel: "{{ student.SVM_acc }}", legendText: "SVM", exploded: true },
+								{  y: 100 -{{ student.SVM_acc }}  , name:"Error", indexLabel: "20%", legendText: "Error" }
 							]
 						}
 					]

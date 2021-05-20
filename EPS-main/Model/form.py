@@ -24,4 +24,5 @@ class StudentObj(forms.ModelForm):
     class Meta:
         model = Student
         fields = "__all__"
-        exclude = ['user',"Department_DS","Department_SVM","Department_KNN"]
+        exclude = ['user',"Department_DS","Department_SVM","Department_KNN" ,"DS_acc",
+                   "SVM_acc" , "KNN_acc"]

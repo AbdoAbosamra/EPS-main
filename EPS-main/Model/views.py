@@ -104,13 +104,16 @@ def DecisionTree(request):
     student = Student.objects.get(user=pk)
     df = pd.DataFrame(list(Student.objects.all().values()))
     df = df.loc[df['user_id'] == pk]
-    df = df.drop(["user_id" , "id" , "Department_DS","Department_SVM","Department_KNN"], axis=1)
+    df = df.drop(["user_id", "id", "Department_DS", "Department_SVM","Department_KNN" ,"DS_acc",
+                   "SVM_acc" , "KNN_acc"], axis=1)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3,random_state=1)
     clf = DecisionTreeClassifier()
     clf = clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
     Dep_pred = clf.predict(df)
+    accuracy = clf.score(X_test, y_test)
     student.Department_DS = list(Dep_pred)[0]
+    student.DS_acc = format(accuracy * 100,".2f")
     form = StudentObj(instance=student)
     form = StudentObj(request.POST, instance=student)
     if form.is_valid():
@@ -124,13 +127,16 @@ def SVM(request):
     student = Student.objects.get(user=pk)
     df = pd.DataFrame(list(Student.objects.all().values()))
     df = df.loc[df['user_id'] == pk]
-    df = df.drop(["user_id", "id", "Department_DS", "Department_SVM"  , "Department_KNN"], axis=1)
+    df = df.drop(["user_id", "id", "Department_DS", "Department_SVM","Department_KNN" ,"DS_acc",
+                   "SVM_acc" , "KNN_acc"], axis=1)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle=True)
     svm = SVC(kernel="linear", C=0.025, random_state=101)
     svm.fit(X_train, y_train)
     y_pred = svm.predict(X_test)
     Dep_pred = svm.predict(df)
+    accuracy = svm.score(X_test, y_test)
     student.Department_SVM = list(Dep_pred)[0]
+    student.SVM_acc = format(accuracy * 100,".2f")
     form = StudentObj(instance=student)
     form = StudentObj(request.POST, instance=student)
     if form.is_valid():
@@ -142,7 +148,8 @@ def KNN(request):
     student = Student.objects.get(user=pk)
     df = pd.DataFrame(list(Student.objects.all().values()))
     df = df.loc[df['user_id'] == pk]
-    df = df.drop(["user_id", "id", "Department_DS", "Department_SVM","Department_KNN"], axis=1)
+    df = df.drop(["user_id", "id", "Department_DS", "Department_SVM","Department_KNN" ,"DS_acc",
+                   "SVM_acc" , "KNN_acc"], axis=1)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=27)
     neighbors = np.arange(1, 30)
     # train_accuracy =np.empty(len(neighbors))
@@ -167,10 +174,10 @@ def KNN(request):
     accuracy = knn.score(X_test, y_test)
     Dep_pred = knn.predict(df)
     student.Department_KNN = list(Dep_pred)[0]
+    student.KNN_acc = format(accuracy * 100,".2f")
     print(student.Department_KNN)
     form = StudentObj(instance=student)
     form = StudentObj(request.POST, instance=student)
-
     if form.is_valid():
         form.save()
     return request

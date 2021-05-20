@@ -11,6 +11,7 @@
                         <div class="col mr-2">
                             <div class="text-uppercase text-success font-weight-bold text-xs mb-1"><span>S V M</span></div>
                             <div class="text-dark font-weight-bold h5 mb-0"><span>{{ student.Department_SVM }}</span></div>
+                             <div class="p-3 mb-2 bg-success text-white">{{ student.SVM_acc }} %</div>
                         </div>
                         <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="50" height="50"
@@ -27,6 +28,8 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
                         <div class="col mr-2">
                             <div class="text-uppercase text-warning font-weight-bold text-xs mb-1"><span>KNN </span></div>
                             <div class="text-dark font-weight-bold h5 mb-0"><span>{{ student.Department_KNN }}</span></div>
+                            <div class="p-3 mb-2 bg-warning text-white">{{ student.KNN_acc }} %</div>
+
                         </div>
                         <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="50" height="50"
@@ -43,6 +46,8 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
                         <div class="col mr-2">
                             <div class="text-uppercase text-danger font-weight-bold text-xs mb-1"><span>Decision Tree</span></div>
                             <div class="text-dark font-weight-bold h5 mb-0"><span>{{ student.Department_DS}}</span></div>
+                            <div class="p-3 mb-2 bg-danger  text-white">{{ student.DS_acc }} %</div>
+
                         </div>
                         <div class="col-auto"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
 width="50" height="50"
@@ -63,10 +68,9 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
                         <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
                     </div>
                 </div>
-            </div>
-        </div>-->
-    </div>
-    <div class="row">
+            </div>-->
+</div>
+   <!-- <div class="row">
         <div class="col-lg-3">
             <div class="card shadow">
                 <h4 class="card-header">WE Code</h4>
@@ -101,5 +105,5 @@ style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-w
         </div>
     </div>
 </div>
-
+-->
 {% endblock %}
