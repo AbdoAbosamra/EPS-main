@@ -166,15 +166,11 @@ def KNN(request):
     y_pred = knn.predict(X_test)
     accuracy = knn.score(X_test, y_test)
     Dep_pred = knn.predict(df)
-    print(Dep_pred)
     student.Department_KNN = list(Dep_pred)[0]
     print(student.Department_KNN)
     form = StudentObj(instance=student)
-    print(form)
     form = StudentObj(request.POST, instance=student)
-    print(form)
 
-    print(Dep_pred)
     if form.is_valid():
         form.save()
     return request
