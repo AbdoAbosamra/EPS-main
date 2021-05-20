@@ -1,0 +1,90 @@
+{% extends 'headerAdminHome.html' %}
+{% block content %}
+
+    <div class="container">
+        <h1>Annual Sales And Website Traffic - 2015</h1>
+        <h5 class="m-t-1">Revenue: <span class="tag tag-success" id="revenue-tag">$15,341,110</span></h5>
+        <hr class="m-t-2">
+
+        <h3>Sales - Top 3 Countries</h3>
+
+        <!-- sales doughnut charts -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="inview" id="sales-doughnut-chart-us"></div>
+                <h3 class="align-center">United States</h3>
+            </div>
+
+            <div class="col-md-4">
+                <div class="inview" id="sales-doughnut-chart-nl"></div>
+                <h3 class="align-center">Netherlands</h3>
+            </div>
+
+            <div class="col-md-4">
+                <div class="inview" id="sales-doughnut-chart-de"></div>
+                <h3 class="align-center">Germany</h3>
+            </div>
+        </div>
+        <!-- row sales doughnt charts -->
+
+        <hr>
+
+        <!-- stats spline area charts -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-block">
+                    <h5 class="card-title">PAGE VIEWS</h5>
+                    <h2>38,435,184</h2>
+                    <div class="inview" id="page-views-spline-area-chart"></div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-block">
+                    <h5 class="card-title">ORDERS</h5>
+                    <h2 >320,151</h2>
+                    <div class="inview" id="orders-spline-area-chart"></div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-block">
+                    <h5 class="card-title">REVENUE</h5>
+                    <h2>$15,341,110</h2>
+                    <div class="inview" id="revenue-spline-area-chart"></div>
+                </div>
+            </div>
+        </div>
+        <!-- row stats spline area charts -->
+
+        <hr>
+
+        <h3>New vs Returning Users</h3>
+
+        <!-- users doughnut and spline chart -->
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="inview" id="users-doughnut-chart"></div>
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <div class="inview" id="users-spline-chart"></div>
+            </div>
+        </div>
+        <!-- row users doughnut and spline chart -->
+
+        <hr>
+
+        <h3>Users By Countries</h3>
+
+        <!-- users countries bar chart -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="inview" id="users-countries-bar-chart"></div>
+            </div>
+        </div>
+        <!-- row users countries bar chart -->
+
+    </div> <!-- container -->
+
+{% endblock %}
