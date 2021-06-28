@@ -91,11 +91,25 @@ def Form(request):
             return redirect('user_home')
 
     context = {'forms': formset}
+
     return render(request, 'from1.html', context)
 
 Data = pd.read_csv('D:\EPS\Data\Data-V1.0.csv')
 X = Data.drop(["ID" , "Department" ,"IS_Chance" , "CS_Chance"], axis=1)
 y = Data["Department"]
+def Render_info(request):
+    pk = request.user.id
+    student = Student.objects.get(user=pk)
+    df = pd.DataFrame(list(Student.objects.all().values()))
+    df = df.loc[df['user_id'] == pk]
+    df = df.drop(["user_id", "id", "Department_DS", "Department_SVM", "Department_KNN", "DS_acc",
+                  "SVM_acc", "KNN_acc"], axis=1)
+
+    form = StudentObj(instance=student)
+    form = StudentObj(request.POST, instance=student)
+    if form.is_valid():
+        form.save()
+    return request
 
 
 @login_required(login_url='login')
