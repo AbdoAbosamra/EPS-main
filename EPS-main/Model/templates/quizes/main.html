@@ -8,11 +8,23 @@ List Of Quiz
     <div class="container">
 
     {% for objs in obj %}
-<!-- Button trigger modal -->
+!-- Button trigger modal -->
    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ objs.name }}">
         <div class="container">{{ objs.name }}</div>
     </button>
     -->
+=======
+        <div class = 'col'>
+            <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <p class="card-text">{{ objs.Description }}</p>
+                  </div>
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ objs.name }}">
+                    <div class="container">{{ objs.name }}</div>
+                </button>
+            </div>
+        </div>
 <!-- Modal -->
 <div class="modal fade" id="{{ objs.name }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
