@@ -98,6 +98,8 @@ Data = pd.read_csv(r'https://raw.githubusercontent.com/abdel99073616/Data/main/D
 y = Data["Department"]
 
 
+
+
 '''def Render_info(request):
     pk = request.user.id
     student = Student.objects.get(user=pk)
