@@ -44,7 +44,7 @@ class Quiz_2(models.Model):
         ('hard', 'hard'),
     )
     name = models.CharField(max_length=5000)
-    topic = models.CharField(max_length=120)
+    topic = models.TextField()
     number_of_questions = models.IntegerField()
     time = models.IntegerField(help_text="Quiz Time in minutes")
     required_score_to_pass = models.IntegerField(help_text="Quiz degree to pass")
