@@ -61,6 +61,7 @@ def register(request):
 @allowed_users(allowed_roles=['student'])
 def User_Home(request):
     pk = request.user.id
+    quiz_veiw(request)
     student = Student.objects.get(user = pk)
     context = {'student' : student}
     return render(request, 'user_home.html', context)
