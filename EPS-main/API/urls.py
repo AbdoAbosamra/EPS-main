@@ -9,6 +9,11 @@ urlpatterns = [
     path('User/<pk>' , UserRetieveAPIVeiw.as_view() ) ,
     path('User/<pk>/edit' , UserUpdateListAPIVeiw.as_view() ) ,
     path('User/<pk>/delete' , UserDestroyAPIView.as_view() ) ,
-    path('user_home/', User_Home, name='user_home_api'),
-
+    path('', frist_page, name='frist_page'),
+    path('user_home/', User_Home, name='user_home'),
+    path('admin_home/', Admin_Home, name='admin_Home'),
+    path('login/', loginpage, name='login'),
+    path('register/', register, name='register'),
+    path('logout/', logout1, name='logout'),
+    path('form/', Form, name='Form'),
 ]
