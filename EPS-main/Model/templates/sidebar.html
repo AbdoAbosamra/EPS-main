@@ -5,11 +5,9 @@
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="nav navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item"><a class="nav-link" href="{% url 'user_home' %}"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'Form' %}"><i class="fas fa-user"></i><span>Form</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'quiz_veiw' %}"><i class="fas fa-user"></i><span>Quiz</span></a></li>
-
+            <li class="nav-item"><a href="{% url 'user_home' %}"><button class="btn btn-light" type="button"><span>Dashboard</span></button></a></li>
+            <li class="nav-item"><a href="{% url 'Form' %}"><button class="btn btn-light" type="button"><span>Form</span></button></a></li>
+            <li class="nav-item"><a href="{% url 'quiz_veiw' %}"><button class="btn btn-light" type="button"><span>Quiz</span></button></a></li>
         </ul>
-        <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
     </div>
 </nav>

@@ -61,6 +61,7 @@ def register(request):
 @allowed_users(allowed_roles=['student'])
 def User_Home(request):
     pk = request.user.id
+    quiz_veiw(request)
     student = Student.objects.get(user = pk)
     context = {'student' : student}
     return render(request, 'user_home.html', context)
@@ -213,8 +214,9 @@ class QuizListVeiw(ListView):
 @allowed_users(allowed_roles=['student'])
 def quiz_veiw(request):
     quiz = Quiz_2.objects.all()
-    context = {'obj':quiz}
-    return render (request, 'quizes/main.html', context)
+    context = {'obj': quiz}
+    print(context)
+    return render(request, 'sidebar.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['student'])
