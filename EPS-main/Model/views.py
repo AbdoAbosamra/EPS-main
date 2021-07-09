@@ -65,12 +65,12 @@ def User_Home(request):
     student = Student.objects.get(user = pk)
     context = {'student' : student}
     return render(request, 'user_home.html', context)
-
+''''
 @login_required(login_url='login')
 @admin_only
 def Admin_Home(request):
     return render(request, 'admin_home.html')
-
+'''
 def logout1(request):
     logout(request)
     return  redirect('login')

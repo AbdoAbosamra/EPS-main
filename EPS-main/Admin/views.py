@@ -10,9 +10,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
+from .decorators import unauthenticated_user , allowed_users , admin_only
+
 
 
 @login_required(login_url="/login/")
+@admin_only
 def index(request):
     context = {}
     context['segment'] = 'index'
@@ -22,6 +25,7 @@ def index(request):
 
 
 @login_required(login_url="/login/")
+@admin_only
 def pages(request):
     context = {}
     # All resource paths end in .html.
