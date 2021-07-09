@@ -213,7 +213,7 @@ def quiz_veiw(request):
     quiz = Quiz_2.objects.all()
     context = {'obj': quiz}
     print(context)
-    return render(request, 'sidebar.html', context)
+    return render(request, 'quizes/main.html', context)
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['student'])
