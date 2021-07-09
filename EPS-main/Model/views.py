@@ -97,7 +97,10 @@ def Form(request):
 
 Data = pd.read_csv(r'https://raw.githubusercontent.com/abdel99073616/Data/main/Data-V1.0.csv')
 X = Data.drop(["ID" , "Department" ,"IS_Chance" , "CS_Chance"], axis=1)
+
 y = Data["Department"]
+
+
 
 
 '''def Render_info(request):
