@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path , include
+from django.urls import path , include ,re_path
 from .views import *
 from django.contrib.auth import views as auth_views
 
@@ -9,6 +9,8 @@ urlpatterns = [
     path('user_home/', User_Home, name='user_home'),
     #path('user_home/quizelist',quiz_veiw , name='quiz_veiw'),
     #path('admin_home/', Admin_Home, name='admin_Home'),
+    # The home page
+    path('Admin/', include("Model.urls2") ,name="home"),
     path('login/', loginpage, name='login'),
     path('register/', register, name='register'),
     path('logout/', logout1, name='logout'),

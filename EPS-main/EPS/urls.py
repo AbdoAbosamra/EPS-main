@@ -22,6 +22,6 @@ urlpatterns = [
     path('',include('Model.urls')),
     # path('api/', include("API.urls")),
     path('accounts/', include('allauth.urls')),
-    path('Admin/', include("Admin.urls")),
+
 
 ]

@@ -12,6 +12,11 @@ from .models import *
 from .decorators import unauthenticated_user , allowed_users , admin_only
 from django.views.generic import ListView
 from django.http import JsonResponse
+from django.template import loader
+from django import template
+from django.http import HttpResponse
+
+
 
 
 import numpy as np
@@ -65,12 +70,43 @@ def User_Home(request):
     student = Student.objects.get(user = pk)
     context = {'student' : student}
     return render(request, 'user_home.html', context)
-''''
+
 @login_required(login_url='login')
 @admin_only
-def Admin_Home(request):
-    return render(request, 'admin_home.html')
-'''
+def index(request):
+
+    context = {}
+    context['segment'] = 'index'
+
+    html_template = loader.get_template( 'index.html' )
+    return HttpResponse(html_template.render(context, request))
+
+@login_required(login_url='login')
+@admin_only
+
+def pages(request):
+    context = {}
+    # All resource paths end in .html.
+    # Pick out the html file name from the url. And load that template.
+    try:
+
+        load_template      = request.path.split('/')[-1]
+        context['segment'] = load_template
+
+        html_template = loader.get_template( load_template )
+        return HttpResponse(html_template.render(context, request))
+
+    except template.TemplateDoesNotExist:
+
+        html_template = loader.get_template( 'page-404.html' )
+        return HttpResponse(html_template.render(context, request))
+
+    except:
+
+        html_template = loader.get_template( 'page-500.html' )
+        return HttpResponse(html_template.render(context, request))
+
+
 def logout1(request):
     logout(request)
     return  redirect('login')
