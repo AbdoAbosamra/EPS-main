@@ -92,12 +92,20 @@ def index(request):
     CS_Students = Student.objects.filter(Department_SVM ="CS").count()
     IS_Students = Student.objects.filter(Department_SVM ="IS").count()
 
+
+    Students = Student.objects.all()
+    Admins = User.objects.filter(is_superuser=True)
+
     context = {"accuracy_ds_Range":format(accuracy_ds_Range,".2f"),
                "accuracy_SVM_Range": format(accuracy_SVM_Range, ".2f"),
                "accuracy_KNN_Range": format(accuracy_KNN_Range, ".2f"),
                "N_Students": N_Students,
                "CS_Students": CS_Students,
-               "IS_Students": IS_Students, }
+               "IS_Students": IS_Students,
+               "Students": Students,
+               "Admins": Admins}
+
+
 
     context['segment'] = 'index'
 
