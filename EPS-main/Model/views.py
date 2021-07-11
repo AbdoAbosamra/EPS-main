@@ -30,7 +30,7 @@ from sklearn import tree
 from sklearn import svm
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
-
+from django.db.models import Avg ,Max , Min
 
 
 
@@ -74,8 +74,31 @@ def User_Home(request):
 @login_required(login_url='login')
 @admin_only
 def index(request):
+    #For DecisionTree
+    accuracy_ds_max = Student.objects.aggregate(Max("DS_acc"))
+    accuracy_ds_min = Student.objects.aggregate(Min("DS_acc"))
+    accuracy_ds_Range = float(accuracy_ds_max.get('DS_acc__max')) - float(accuracy_ds_min.get('DS_acc__min'))
+    #For SVM
+    accuracy_SVM_max = Student.objects.aggregate(Max("SVM_acc"))
+    accuracy_SVM_min = Student.objects.aggregate(Min("SVM_acc"))
+    accuracy_SVM_Range = float(accuracy_SVM_max.get('SVM_acc__max')) - float(accuracy_SVM_min.get('SVM_acc__min'))
 
-    context = {}
+    #For KNN
+    accuracy_KNN_max = Student.objects.aggregate(Max("KNN_acc"))
+    accuracy_KNN_min = Student.objects.aggregate(Min("KNN_acc"))
+    accuracy_KNN_Range = float(accuracy_KNN_max.get('KNN_acc__max')) - float(accuracy_KNN_min.get('KNN_acc__min'))
+
+    N_Students = Student.objects.all().count()
+    CS_Students = Student.objects.filter(Department_SVM ="CS").count()
+    IS_Students = Student.objects.filter(Department_SVM ="IS").count()
+
+    context = {"accuracy_ds_Range":format(accuracy_ds_Range,".2f"),
+               "accuracy_SVM_Range": format(accuracy_SVM_Range, ".2f"),
+               "accuracy_KNN_Range": format(accuracy_KNN_Range, ".2f"),
+               "N_Students": N_Students,
+               "CS_Students": CS_Students,
+               "IS_Students": IS_Students, }
+
     context['segment'] = 'index'
 
     html_template = loader.get_template('index.html')
@@ -136,7 +159,7 @@ X = Data.drop(["ID" , "Department" ,"IS_Chance" , "CS_Chance"], axis=1)
 y = Data["Department"]
 
 
-'''def Render_info(request):
+''' def Render_info(request):
     pk = request.user.id
     student = Student.objects.get(user=pk)
     df = pd.DataFrame(list(Student.objects.all().values()))
@@ -160,7 +183,7 @@ def DecisionTree(request):
     df = df.loc[df['user_id'] == pk]
     df = df.drop(["user_id", "id", "Department_DS", "Department_SVM","Department_KNN" ,"DS_acc",
                    "SVM_acc" , "KNN_acc"], axis=1)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3,random_state=1)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1/3,random_state=42)
     clf = DecisionTreeClassifier()
     clf = clf.fit(X_train, y_train)
     y_pred = clf.predict(X_test)
@@ -184,7 +207,7 @@ def SVM(request):
     df = df.drop(["user_id", "id", "Department_DS", "Department_SVM","Department_KNN" ,"DS_acc",
                    "SVM_acc" , "KNN_acc"], axis=1)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, shuffle=True)
-    svm = SVC(kernel="linear", C=0.025, random_state=101)
+    svm = SVC(kernel="linear", C=0.025, random_state=42)
     svm.fit(X_train, y_train)
     y_pred = svm.predict(X_test)
     Dep_pred = svm.predict(df)
@@ -204,7 +227,7 @@ def KNN(request):
     df = df.loc[df['user_id'] == pk]
     df = df.drop(["user_id", "id", "Department_DS", "Department_SVM","Department_KNN" ,"DS_acc",
                    "SVM_acc" , "KNN_acc"], axis=1)
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=27)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=42)
     neighbors = np.arange(1, 30)
     # train_accuracy =np.empty(len(neighbors))
     # test_accuracy = np.empty(len(neighbors))
