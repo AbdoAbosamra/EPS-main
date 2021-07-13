@@ -1,0 +1,37 @@
+{% extends 'quizes/base.html' %} {% block title %} List Of Quiz {% endblock %} {% block content %}
+<div class="row">
+
+    {% for objs in obj %}
+    <div class='col'>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <p class="card-text">{{ objs.topic }}</p>
+            </div>
+
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ objs.name }}">
+                    <div class="container">{{ objs.name }}</div>
+                </button>
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="{{ objs.name }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Are You sure to start {{ objs.name }} Quiz</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Name : {{ objs.name }}<br> Number of questions : {{ objs.number_of_questions }}<br> Time : {{ objs.time }}<br> Required score to pass : {{ objs.required_score_to_pass }}<br> Level : {{ objs.difficulty }}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NO</button>
+                    <a href="{% url 'quizpk_veiw' pk=objs.id%}"><button type="button" class="btn btn-success">YES</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock content %}

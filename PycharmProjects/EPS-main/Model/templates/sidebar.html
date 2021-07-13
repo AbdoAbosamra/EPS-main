@@ -1,0 +1,13 @@
+<nav class="navbar navbar-light align-items-start sidebar sidebar-light accordion bg-gradient-lighter p-0">
+    <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+            <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-laugh-wink"></i></div>
+            <div class="sidebar-brand-text mx-3"><span>EPS</span></div>
+        </a>
+        <hr class="sidebar-divider my-0">
+        <ul class="nav navbar-nav text-light" id="accordionSidebar">
+            <li class="nav-item"><a href="{% url 'user_home' %}"><button class="btn btn-light" type="button"><span>Dashboard</span></button></a></li>
+            <li class="nav-item"><a href="{% url 'Form' %}"><button class="btn btn-light" type="button"><span>Form</span></button></a></li>
+            <li class="nav-item"><a href="{% url 'quiz_veiw' %}"><button class="btn btn-light" type="button"><span>Quiz</span></button></a></li>
+        </ul>
+    </div>
+</nav>

@@ -1,0 +1,19 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <span class="d-block p-4 bg-dark  text-white" style="margin: 8px 8px 8px 8px;">Enter Your Degrees</span>
+
+<div class="container">
+    <form method="post">
+        <table>
+            {% csrf_token %}
+            {{ forms.as_table }}
+        </table>
+
+        <input type="submit" value="Submit" class="btn btn-primary"  >
+    </form>
+</div>
+
+
+
+{% endblock %}

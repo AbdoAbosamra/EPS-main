@@ -1,0 +1,228 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="{% static '/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/fonts/fontawesome5-overrides.min.css' %}">
+    {% block scripts %}
+    {% endblock scripts %}
+    <style>
+			body {
+				background-color: #fafafa;
+				font-size: 16px;
+				line-height: 1.5;
+			}
+
+			h1,h2,h3,h4,h5,h6 {
+				font-weight: 400;
+			}
+
+			#header {
+				border-bottom: 5px solid #37474F;
+				color: #37474F;
+				margin-bottom: 1.5rem;
+				padding: 1rem 0;
+			}
+
+			#revenue-tag {
+				font-weight: inherit !important;
+				border-radius: 0px !important;
+			}
+
+			.card {
+				border: 0rem;
+				border-radius: 0rem;
+			}
+
+			.card-header {
+				background-color: #37474F;
+				border-radius: 0 !important;
+				color:	white;
+				margin-bottom: 0;
+				padding:	1rem;
+			}
+
+			.card-block {
+				border: 1px solid #cccccc;
+			}
+
+			.shadow {
+				box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+										0 1px 18px 0 rgba(0, 0, 0, 0.12),
+										0 3px 5px -1px rgba(0, 0, 0, 0.2);
+			}
+
+			#revenue-column-chart, #products-revenue-pie-chart, #orders-spline-chart {
+				width: 100%;
+			}
+		</style>
+    <!-- Scripts -->
+		<script src="{% static '/assets/jquery/jquery-3.1.0.min.js' %}"></script>
+		<script src="{% static '/assets/tether/tether.min.js' %}"></script>
+		<script src="{% static '/assets/bootstrap/bootstrap4-alpha3.min.js' %}"></script>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script>
+			$(function () {
+
+
+				var productsRevenuePieChart_1 = new CanvasJS.Chart("products-revenue-pie-chart-1", {
+					exportEnabled: true,
+				    animationEnabled: true,
+					theme: "theme1",
+					legend: {
+						fontSize: 30
+					},
+					toolTip: {
+						borderThickness: 0,
+						content: "<span style='\"'color: {green};'\"'>{name}</span>: ${y} (#percent%)",
+						cornerRadius: 5
+					},
+					data: [
+						{
+							type: "pie",
+		                    showInLegend: true,
+		                    toolTipContent: "{name}: <strong>{y}%</strong>",
+		                    indexLabel: "{name} - {y}%",
+							dataPoints: [
+								{  y: {{ student.SVM_acc }} , name:"SVM", indexLabel: "{{ student.SVM_acc }}", legendText: "SVM", exploded: true },
+								{  y: 100 -{{ student.SVM_acc }}  , name:"Error", indexLabel: "20%", legendText: "Error" }
+							]
+						}
+					]
+				});
+
+				productsRevenuePieChart_1.render();
+
+			var productsRevenuePieChart_2 = new CanvasJS.Chart("products-revenue-pie-chart-2", {
+					animationEnabled: true,
+					theme: "theme2",
+					legend: {
+						fontSize: 14
+					},
+					toolTip: {
+						borderThickness: 0,
+						content: "<span style='\"'color: {color};'\"'>{name}</span>: ${y} (#percent%)",
+						cornerRadius: 0
+					},
+					data: [
+						{
+							indexLabelFontColor: "#676464",
+							indexLabelFontSize: 14,
+							legendMarkerType: "blue",
+							legendText: "{indexLabel}",
+							showInLegend: true,
+							startAngle:  90,
+							type: "pie",
+							dataPoints: [
+								{  y: 40 , name:"A", indexLabel: "50%", legendText: "A", exploded: true },
+								{  y: 60 , name:"B", indexLabel: "50%", legendText: "B" }
+							]
+						}
+					]
+				});
+
+				productsRevenuePieChart_2.render();
+
+			var productsRevenuePieChart_3 = new CanvasJS.Chart("products-revenue-pie-chart-3", {
+					animationEnabled: true,
+					theme: "theme2",
+					legend: {
+						fontSize: 14
+					},
+					toolTip: {
+						borderThickness: 0,
+						content: "<span style='\"'color: {color};'\"'>{name}</span>: ${y} (#percent%)",
+						cornerRadius: 0
+					},
+					data: [
+						{
+							indexLabelFontColor: "#676464",
+							indexLabelFontSize: 14,
+							legendMarkerType: "blue",
+							legendText: "{indexLabel}",
+							showInLegend: true,
+							startAngle:  90,
+							type: "pie",
+							dataPoints: [
+								{  y: 50 , name:"A", indexLabel: "50%", legendText: "A", exploded: true },
+								{  y: 50 , name:"B", indexLabel: "50%", legendText: "B" }
+							]
+						}
+					]
+				});
+
+				productsRevenuePieChart_3.render();
+
+			var productsRevenuePieChart_4 = new CanvasJS.Chart("products-revenue-pie-chart-4", {
+					animationEnabled: true,
+					theme: "theme2",
+					legend: {
+						fontSize: 14
+					},
+					toolTip: {
+						borderThickness: 0,
+						content: "<span style='\"'color: {color};'\"'>{name}</span>: ${y} (#percent%)",
+						cornerRadius: 0
+					},
+					data: [
+						{
+							indexLabelFontColor: "#676464",
+							indexLabelFontSize: 14,
+							legendMarkerType: "blue",
+							legendText: "{indexLabel}",
+							showInLegend: true,
+							startAngle:  90,
+							type: "pie",
+							dataPoints: [
+								{  y: {{student.DataBase}} , name:"A", indexLabel: "{{student.DataBase}}", legendText: "A", exploded: true },
+								{  y: 20 , name:"B", indexLabel: "50%", legendText: "B" }
+							]
+						}
+					]
+				});
+
+				productsRevenuePieChart_4.render();
+
+			});
+		</script>
+
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        {%  include 'sidebar.html' %}
+
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                {%  include 'mainbar.html' %}
+
+         {% block content %}
+
+
+         {% endblock %}
+
+         </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2020</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="{%static '/js/jquery.min.js' %}"></script>
+    <script src="{%static '/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{%static '/js/chart.min.js' %}"></script>
+    <script src="{%static '/js/bs-init.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+    <script src="{%static '/js/theme.js' %}"></script>
+</body>
+
+</html>
